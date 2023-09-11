@@ -1,11 +1,17 @@
-import React from 'react';
+import React from "react";
+import MainBackground from "../components/MainBackground";
+import SignInContent from "../components/SignInContent";
+
+
 
 function SignInPage() {
-    return (
-      <div>
+  return (
+    <>
+      <MainBackground>
+        <SignInContent />
+      </MainBackground>
+    </>
+  );
+}
 
-      </div>
-    );
-  }
-  
-  export default SignInPage;
+export default SignInPage;
