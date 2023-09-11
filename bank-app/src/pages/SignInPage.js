@@ -6,11 +6,11 @@ import SignInContent from "../components/SignInContent";
 
 function SignInPage() {
   return (
-    <>
+    <div className="container">
       <MainBackground>
         <SignInContent />
       </MainBackground>
-    </>
+    </div>
   );
 }
 

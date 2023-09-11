@@ -12,9 +12,13 @@ html {
     flex-direction: column;
     min-height: 100vh;
   }
-  
-  .main {
+
+  .container {
     display: flex;
+    min-height: 80.8vh;
+  }
+
+  .main {
     flex: 1;
   }
   
@@ -173,6 +177,7 @@ html {
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
+    height: 363px;
   }
   
   .sign-in-icon {
