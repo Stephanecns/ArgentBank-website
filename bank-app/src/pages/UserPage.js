@@ -1,11 +1,17 @@
-import React from 'react';
+import React from "react";
+import WelcomeHeader from "../components/WelcomeHeader";
+import MainBackground from "../components/MainBackground";
+import AccountSummaryList from "../components/AccountSummaryList";
 
 function UserPage() {
-    return (
-      <div>
+  return (
+    <div className="container">
+      <MainBackground>
+        <WelcomeHeader />
+        <AccountSummaryList />
+      </MainBackground>
+    </div>
+  );
+}
 
-      </div>
-    );
-  }
-  
-  export default UserPage;
+export default UserPage;
