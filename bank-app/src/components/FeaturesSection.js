@@ -1,7 +1,7 @@
 import React from 'react';
-import Chat from "../img/icon-chat.png"
-import Money from "../img/icon-money.png"
-import Security from "../img/icon-security.png"
+import Chat from "../img/icon-chat.webp"
+import Money from "../img/icon-money.webp"
+import Security from "../img/icon-security.webp"
 
 function FeaturesSection() {
     return (
@@ -41,3 +41,5 @@ function FeaturesSection() {
   }
   
   export default FeaturesSection;
+
+  //Green code = Non

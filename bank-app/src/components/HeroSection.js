@@ -16,3 +16,5 @@ function HeroSection() {
   }
   
   export default HeroSection;
+
+    //Green code = oui 

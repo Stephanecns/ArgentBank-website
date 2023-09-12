@@ -9,3 +9,6 @@ function Footer() {
 }
 
 export default Footer;
+
+
+//Green code = oui 
