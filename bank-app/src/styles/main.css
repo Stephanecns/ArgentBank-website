@@ -18,6 +18,10 @@ html {
     min-height: 80.8vh;
   }
 
+  .fa.fa-user-circle{
+    padding-right: 4.5px;
+  }
+
   .main {
     flex: 1;
   }
