@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom/client';
 import '../src/styles/index.css'; 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { store } from '../src/store'
+import { store } from '../src/redux/store'
+//Le "Provider" sert à donner à tous les composants React l'accès au store Redux.
 import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +15,7 @@ root.render(
       <BrowserRouter>
       <Provider store={store}>
     <App />
-    </Provider>,
+    </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
