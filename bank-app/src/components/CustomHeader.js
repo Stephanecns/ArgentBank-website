@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from "../img/argentBankLogo.webp";
+import { useNavigate } from 'react-router-dom';
+import { resetLoginState } from '../redux/loginSlice';
+import { useDispatch } from 'react-redux';
 
 function CustomHeader({ username }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');  // Supprime le token du localStorage
+    dispatch(resetLoginState());  // Réinitialiser le state lors de la déconnexion
+    navigate('/');  // Redirige l'utilisateur vers la page d'accueil
+  };
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -18,7 +29,7 @@ function CustomHeader({ username }) {
           <i className="fa fa-user-circle"></i>
           {username}
         </Link>
-        <Link className="main-nav-item" to="/" onClick={() => { /* ici mettre la logique de déconnexion */ }}>
+        <Link className="main-nav-item" to="/" onClick={handleSignOut}>
           <i className="fa fa-sign-out"></i>
           Sign Out
         </Link>

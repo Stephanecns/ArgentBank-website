@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchLogin } from '../redux/loginSlice'; 
 
 function SignInContent() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.login.status);
+
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials((prevCredentials) => ({ ...prevCredentials, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(fetchLogin(credentials));
+  };
+
+  useEffect(() => {
+    if (status === 'succeeded') {
+      navigate('/user');
+    }
+  }, [status, navigate]);
+
   return (
-    
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
+        <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" value={credentials.email} onChange={handleChange} />
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
+          <input type="password" id="password" name="password" value={credentials.password} onChange={handleChange} />
         </div>
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />
@@ -27,4 +51,5 @@ function SignInContent() {
 
 export default SignInContent;
 
-    //Green code = oui 
+
+//Green code = oui 
