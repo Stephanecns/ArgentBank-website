@@ -38,7 +38,7 @@ export const fetchLogin = createAsyncThunk(
 
 // État initial du slice
 const initialState = {
-  token: null, // token sera null au début et sera mis à jour lors de la connexion réussie
+  token: localStorage.getItem('token') || null, // Récupère le token du localStorage s'il existe, sinon attribue `null` comme valeur par défaut.
   status: 'idle', // status représente l'état actuel de la requête (idle, loading, succeeded, failed)
   error: null, // error sera utilisé pour stocker tout message d'erreur renvoyé par l'API
 };
