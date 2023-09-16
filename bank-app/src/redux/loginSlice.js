@@ -4,7 +4,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchLogin = createAsyncThunk(
   "login/fetchLogin",
   async (credentials, { rejectWithValue }) => {
-    console.log("Credentials:", credentials);
     try {
       // Envoie une requête POST avec les identifiants de l'utilisateur à l'API pour tenter une connexion
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -14,7 +13,6 @@ export const fetchLogin = createAsyncThunk(
         },
         body: JSON.stringify(credentials),
       });
-      console.log("Response:", response);
 
       // Vérifie que la réponse est OK, sinon lance une erreur
       if (!response.ok) {
@@ -56,7 +54,7 @@ const loginSlice = createSlice({
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // Supposant que votre payload a une structure { status, message, body }
+        // Payload avec a une structure { status, message, body }
         state.token = action.payload.body.token;
       })
       .addCase(fetchLogin.rejected, (state, action) => {
@@ -67,7 +65,6 @@ const loginSlice = createSlice({
 });
 
 // Exporte l'action pour réinitialiser l'état
-
 export const { resetLoginState } = loginSlice.actions;
 // Exporte le reducer pour être utilisé dans le store Redux
 export default loginSlice.reducer;

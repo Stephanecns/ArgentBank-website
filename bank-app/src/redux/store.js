@@ -2,8 +2,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import loginReducer from '../redux/loginSlice';
 
+// Le magasin est créé avec une configuration initiale qui spécifie quel réducteur doit être utilisé pour quelle partie de l'état
 export const store = configureStore({
   reducer: {
+    // La clé `login` de votre état sera gérée par `loginReducer`
     login: loginReducer,
   },
 })
