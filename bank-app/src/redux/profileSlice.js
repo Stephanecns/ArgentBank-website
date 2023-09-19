@@ -1,1 +1,0 @@
-//pour gérer les actions et l'état liés aux endpoints POST /user/profile et PUT /user/profile (ce slice gérera les deux endpoints étant donné qu'ils concernent tous deux le profil utilisateur)
