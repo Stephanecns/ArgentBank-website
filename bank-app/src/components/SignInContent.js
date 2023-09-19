@@ -61,7 +61,9 @@ function SignInContent() {
         <button type="submit" className="sign-in-button">
           Sign In
         </button>
-        {error && <div className="error-message">Email ou mot de passe incorrect</div>}
+        {error && (
+          <div className="error-message">Email ou mot de passe incorrect</div>
+        )}
       </form>
     </section>
   );
