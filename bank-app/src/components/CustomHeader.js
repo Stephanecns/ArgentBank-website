@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // importez useSelector
 import Logo from "../img/argentBankLogo.webp";
-import { useNavigate } from 'react-router-dom';
-import { resetLoginState } from '../redux/loginSlice';
-import { useDispatch } from 'react-redux';
 
-function CustomHeader({ username }) {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+function CustomHeader() {
+  // Utilisez useSelector pour obtenir le nom d'utilisateur depuis votre store Redux
+  const userName = useSelector((state) => state.user.profile.userName);
 
-  const handleSignOut = () => {
-    localStorage.removeItem('token');  // Supprime le token du localStorage
-    dispatch(resetLoginState());  // Réinitialiser le state lors de la déconnexion
-    navigate('/');  // Redirige l'utilisateur vers la page d'accueil
-  };
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -27,9 +20,9 @@ function CustomHeader({ username }) {
       <div>
         <Link className="main-nav-item" to="/user">
           <i className="fa fa-user-circle"></i>
-          {username}
+          {userName ? userName : "Profile"} {/* Affichez le nom d'utilisateur s'il est disponible, sinon affichez "Profile" */}
         </Link>
-        <Link className="main-nav-item" to="/" onClick={handleSignOut}>
+        <Link className="main-nav-item" to="/">
           <i className="fa fa-sign-out"></i>
           Sign Out
         </Link>
