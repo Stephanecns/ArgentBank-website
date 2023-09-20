@@ -21,9 +21,8 @@ export const fetchLogin = createAsyncThunk(
 
       // Parse la réponse en JSON
       const data = await response.json();
-      console.log("Data:", data);
       // Stockage du token après avoir vérifié que la réponse est OK et après avoir parse le JSON
-      localStorage.setItem("token", data.body.token);
+      sessionStorage.setItem("token", data.body.token);
 
       return data;
     } catch (error) {
@@ -35,7 +34,7 @@ export const fetchLogin = createAsyncThunk(
 
 // État initial du slice
 const initialState = {
-  token: localStorage.getItem("token") || null, // Récupère le token du localStorage s'il existe, sinon attribue `null` comme valeur par défaut.
+  token: sessionStorage.getItem("token") || null, // Récupère le token du sessionStorage s'il existe, sinon attribue `null` comme valeur par défaut.
   status: "idle", // status représente l'état actuel de la requête (idle, loading, succeeded, failed)
   error: null, // error sera utilisé pour stocker tout message d'erreur renvoyé par l'API
 };

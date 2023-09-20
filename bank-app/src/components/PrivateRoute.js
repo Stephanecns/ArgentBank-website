@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
-//Dans cette configuration, le hook useEffect dans PrivateRoute vérifiera à chaque rendu si un token est présent dans le store Redux. Si un token n'est pas présent, il redirigera l'utilisateur vers la page de connexion. Si un token est présent, il rendra les enfants (dans ce cas, <UserPage />).
+// Si un token n'est pas présent, il redirigera l'utilisateur vers la page de connexion. Si un token est présent, il rendra les enfants (dans ce cas, <UserPage />).
 function PrivateRoute({ children }) {
   const token = useSelector((state) => state.login.token);
   const navigate = useNavigate();
