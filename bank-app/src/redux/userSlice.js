@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+
 // Création du thunk pour effectuer la requête de mise à jour du nom d'utilisateur
 export const updateUsername = createAsyncThunk(
   "user/updateUsername",
@@ -30,19 +31,33 @@ export const updateUsername = createAsyncThunk(
   }
 );
 
+// État initial
+const initialState = {
+  profile: JSON.parse(localStorage.getItem("userProfile")) || {
+    id: "",
+    email: "",
+    userName: "",
+  },
+  status: null,
+  error: null,
+};
+
 // Création du slice pour gérer l'état du nom d'utilisateur
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    profile: {
-      id: "",
-      email: "",
-      userName: "",
+  initialState,
+  reducers: {
+    resetUserProfile: (state) => {
+      state.profile = {
+        id: "",
+        email: "",
+        userName: "",
+      };
+      state.status = null;
+      state.error = null;
+      localStorage.removeItem("userProfile");  // Effacer les données du profil dans le localStorage
     },
-    status: null,
-    error: null,
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(updateUsername.pending, (state) => {
@@ -52,6 +67,10 @@ const userSlice = createSlice({
       .addCase(updateUsername.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.profile = action.payload.body;
+        localStorage.setItem(
+          "userProfile",
+          JSON.stringify(action.payload.body)
+        );
       })
       .addCase(updateUsername.rejected, (state, action) => {
         state.status = "failed";
@@ -60,4 +79,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { resetUserProfile } = userSlice.actions;
 export default userSlice.reducer;

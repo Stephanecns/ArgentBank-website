@@ -26,7 +26,7 @@ export const fetchLogin = createAsyncThunk(
 
       return data;
     } catch (error) {
-      // En cas d'erreur, nous renvoyons le message d'erreur pour le gérer dans le slice
+      // En cas d'erreur, renvoie le message d'erreur pour le gérer dans le slice
       return rejectWithValue(error.message);
     }
   }

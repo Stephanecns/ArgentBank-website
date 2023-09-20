@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; // importez useSelector
 import { resetLoginState } from "../redux/loginSlice";
+import { resetUserProfile } from "../redux/userSlice";
 import Logo from "../img/argentBankLogo.webp";
 
 function CustomHeader() {
@@ -10,8 +11,9 @@ function CustomHeader() {
   const userName = useSelector((state) => state.user.profile.userName);
 
   const handleSignOut = () => {
-    sessionStorage.removeItem("token"); // supprimez le token du sessionStorage
-    dispatch(resetLoginState()); // réinitialisez l'état de login dans le store Redux
+    sessionStorage.removeItem("token"); // supprime le token du sessionStorage
+    dispatch(resetLoginState()); // réinitialise l'état de login dans le store Redux
+    dispatch(resetUserProfile()); // réinitialise l'état du profil utilisateur dans le store Redux
   };
 
   return (
