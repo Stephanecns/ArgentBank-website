@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "../redux/loginSlice";
+import { fetchUserProfile } from "../redux/userSlice"; // Importez le thunk pour récupérer le profil utilisateur
 
 function SignInContent() {
   const navigate = useNavigate();
@@ -25,9 +26,10 @@ function SignInContent() {
 
   useEffect(() => {
     if (status === "succeeded") {
+      dispatch(fetchUserProfile()); // Récupérez le profil utilisateur après une connexion réussie
       navigate("/user");
     }
-  }, [status, navigate]);
+  }, [status, navigate, dispatch]);
 
   return (
     <section className="sign-in-content">
@@ -70,5 +72,3 @@ function SignInContent() {
 }
 
 export default SignInContent;
-
-//Green code = oui

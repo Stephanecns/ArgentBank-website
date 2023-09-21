@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
-// Création du thunk pour effectuer la requête de mise à jour du nom d'utilisateur
+// Thunk pour la mise à jour du nom d'utilisateur
 export const updateUsername = createAsyncThunk(
   "user/updateUsername",
   async (newUsername, { rejectWithValue, getState }) => {
-    const token = getState().login.token; // Obtention du token depuis le slice "login" du state
+    const token = getState().login.token;
+
     try {
       const response = await fetch(
         "http://localhost:3001/api/v1/user/profile",
@@ -31,7 +31,34 @@ export const updateUsername = createAsyncThunk(
   }
 );
 
-// État initial
+// Thunk pour récupérer le profil de l'utilisateur
+export const fetchUserProfile = createAsyncThunk(
+  "user/fetchUserProfile",
+  async (_, { rejectWithValue, getState }) => {
+    const token = getState().login.token;
+
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Unable to fetch user profile.");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   profile: JSON.parse(localStorage.getItem("userProfile")) || {
     id: "",
@@ -42,7 +69,6 @@ const initialState = {
   error: null,
 };
 
-// Création du slice pour gérer l'état du nom d'utilisateur
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -55,11 +81,12 @@ const userSlice = createSlice({
       };
       state.status = null;
       state.error = null;
-      localStorage.removeItem("userProfile");  // Effacer les données du profil dans le localStorage
+      localStorage.removeItem("userProfile");
     },
   },
   extraReducers: (builder) => {
     builder
+      // Pour updateUsername
       .addCase(updateUsername.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -73,6 +100,23 @@ const userSlice = createSlice({
         );
       })
       .addCase(updateUsername.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      // Pour fetchUserProfile
+      .addCase(fetchUserProfile.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.profile = action.payload.body;
+        localStorage.setItem(
+          "userProfile",
+          JSON.stringify(action.payload.body)
+        );
+      })
+      .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });

@@ -13,7 +13,7 @@ function CustomHeader() {
   const handleSignOut = () => {
     sessionStorage.removeItem("token"); // supprime le token du sessionStorage
     dispatch(resetLoginState()); // réinitialise l'état de login dans le store Redux
-    dispatch(resetUserProfile()); // réinitialise l'état du profil utilisateur dans le store Redux
+    dispatch(resetUserProfile());
   };
 
   return (
