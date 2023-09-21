@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Logo from "../img/argentBankLogo.webp";
 import "font-awesome/css/font-awesome.min.css";
 function Header() {
@@ -25,5 +25,4 @@ function Header() {
 
 export default Header;
 
-
-  //Green code = oui 
+//Green code = oui

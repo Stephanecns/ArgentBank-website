@@ -1,7 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // Si un token n'est pas présent, il redirigera l'utilisateur vers la page de connexion. Si un token est présent, il rendra les enfants (dans ce cas, <UserPage />).
 function PrivateRoute({ children }) {
@@ -10,7 +9,7 @@ function PrivateRoute({ children }) {
 
   React.useEffect(() => {
     if (!token) {
-      navigate('/sign-in');
+      navigate("/sign-in");
     }
   }, [token, navigate]);
 
@@ -18,4 +17,3 @@ function PrivateRoute({ children }) {
 }
 
 export default PrivateRoute;
-

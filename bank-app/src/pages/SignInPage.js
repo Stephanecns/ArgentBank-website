@@ -2,8 +2,6 @@ import React from "react";
 import MainBackground from "../components/MainBackground";
 import SignInContent from "../components/SignInContent";
 
-
-
 function SignInPage() {
   return (
     <div className="container">
@@ -15,4 +13,4 @@ function SignInPage() {
 }
 
 export default SignInPage;
-        //Green code = oui 
+//Green code = oui

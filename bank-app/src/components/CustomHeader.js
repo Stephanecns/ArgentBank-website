@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'; // importez useSelector
+import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"; // importez useSelector
 import { resetLoginState } from "../redux/loginSlice";
 import { resetUserProfile } from "../redux/userSlice";
 import Logo from "../img/argentBankLogo.webp";
@@ -29,7 +29,8 @@ function CustomHeader() {
       <div>
         <Link className="main-nav-item" to="/user">
           <i className="fa fa-user-circle"></i>
-          {userName ? userName : "Profile"} {/* Affichez le nom d'utilisateur s'il est disponible, sinon affichez "Profile" */}
+          {userName ? userName : "Profile"}{" "}
+          {/* Affichez le nom d'utilisateur s'il est disponible, sinon affichez "Profile" */}
         </Link>
         <Link className="main-nav-item" to="/" onClick={handleSignOut}>
           <i className="fa fa-sign-out"></i>

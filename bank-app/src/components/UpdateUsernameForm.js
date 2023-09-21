@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUsername } from "../redux/userSlice"
+import { updateUsername } from "../redux/userSlice";
 
 function UpdateUsernameForm() {
   // Définition des états locaux pour chaque champ du formulaire
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  
+
   // Récupération de la fonction dispatch et des états du slice depuis le store Redux
   const dispatch = useDispatch();
   const userStatus = useSelector((state) => state.user.status);
@@ -25,34 +25,34 @@ function UpdateUsernameForm() {
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <label htmlFor="username">User name</label>
-          <input 
-            type="text" 
-            id="username" 
-            name="username" 
-            placeholder="ex: Ben_hg" 
-            value={username} 
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="ex: Ben_hg"
+            value={username}
             onChange={(e) => setUsername(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />
         </div>
         <div className="input-wrapper">
           <label htmlFor="firstName">First name</label>
-          <input 
-            type="text" 
-            id="firstName" 
-            name="firstName" 
-            placeholder="ex: Ben" 
-            value={firstName} 
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="ex: Ben"
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />
         </div>
         <div className="input-wrapper">
           <label htmlFor="lastName">Last name</label>
-          <input 
-            type="text" 
-            id="lastName" 
-            name="lastName" 
-            placeholder="ex: Hong" 
-            value={lastName} 
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="ex: Hong"
+            value={lastName}
             onChange={(e) => setLastName(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />
         </div>
@@ -65,7 +65,17 @@ function UpdateUsernameForm() {
           <button type="submit" className="profile-form-button">
             Save
           </button>
-          <button type="button" className="profile-form-button" onClick={() => { setUsername(''); setFirstName(''); setLastName(''); }}> {/* Reset les valeurs lors du clic */}
+          <button
+            type="button"
+            className="profile-form-button"
+            onClick={() => {
+              setUsername("");
+              setFirstName("");
+              setLastName("");
+            }}
+          >
+            {" "}
+            {/* Reset les valeurs lors du clic */}
             Cancel
           </button>
         </div>

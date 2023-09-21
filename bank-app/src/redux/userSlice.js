@@ -38,13 +38,16 @@ export const fetchUserProfile = createAsyncThunk(
     const token = getState().login.token;
 
     try {
-      const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
