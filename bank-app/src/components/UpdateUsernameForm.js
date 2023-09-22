@@ -24,34 +24,34 @@ function UpdateUsernameForm() {
       <h1>Edit user info</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
-          <label htmlFor="username">User name</label>
+          <label htmlFor="username">User name:</label>
           <input
             type="text"
             id="username"
             name="username"
-            placeholder="ex: Ben_hg"
+            placeholder="Ben_hg"
             value={username}
             onChange={(e) => setUsername(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="firstName">First name</label>
+          <label htmlFor="firstName">First name: </label>
           <input
             type="text"
             id="firstName"
             name="firstName"
-            placeholder="ex: Ben"
+            placeholder="Ben"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="lastName">Last name</label>
+          <label htmlFor="lastName">Last name:</label>
           <input
             type="text"
             id="lastName"
             name="lastName"
-            placeholder="ex: Hong"
+            placeholder="Hong"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)} // Mise à jour de l'état local lors du changement de la valeur du champ
           />

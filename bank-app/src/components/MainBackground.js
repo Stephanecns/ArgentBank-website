@@ -5,4 +5,4 @@ function MainBackground({ children }) {
 }
 
 export default MainBackground;
-//Green code = oui
+
